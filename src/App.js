@@ -66,7 +66,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className='content'>
       {user ? (
         <>
           <Button onClick={signOut}>Sign out</Button>
