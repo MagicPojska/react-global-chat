@@ -72,6 +72,7 @@ function App() {
           <Button onClick={signOut}>Sign out</Button>
           <Channel user={user} db={db} />
         </>
+
       ) : (
         <Button onClick={signInWithGoogle}>Sign in with Google</Button>)}
 

@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
-import firebase from 'firebase/compat/app';
+import Message from './Message'
 
 function Channel({ user = null, db = null }) {
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
+
+    const { uid, displayName, photoURL } = user;
 
     useEffect(() => {
         if (db) {
-            const unsubscribe = db.collection('messages').orderBy('createdAt', 'desc').limit(100).onSnapshot(querySnapshot => {
+            const unsubscribe = db.collection('messages').orderBy('createdAt').limit(100).onSnapshot(querySnapshot => {
                 const data = querySnapshot.docs.map(doc => ({
                     ...doc.data(),
                     id: doc.id,
@@ -18,14 +21,37 @@ function Channel({ user = null, db = null }) {
         }
     }, [db])
 
+    const handleOnChange = e => {
+        setNewMessage(e.target.value);
+    }
+
+    const handleOnSubmit = e => {
+        e.preventDefault();
+
+        if (db) {
+            db.collection('messages').add({
+                text: newMessage,
+                createdAt: new Date(),
+                uid,
+                displayName,
+                photoURL
+            })
+        }
+    }
+
     return (
         <>
             <ul>
                 {messages.map(message => (
-                    <li key={message.id}>{message.text}</li>
+                    <li key={message.id}>
+                        <Message {...message} />
+                    </li>
                 ))}
             </ul>
-            <form ></form>
+            <form onSubmit={handleOnSubmit}>
+                <input type='text' value={newMessage} onChange={handleOnChange} placeholder='Type your message here' />
+                <button type='submit' disabled={!newMessage}>Send</button>
+            </form>
         </>
     )
 }
