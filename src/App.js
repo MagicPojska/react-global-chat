@@ -12,7 +12,7 @@ import firebase from 'firebase/compat/app';
 
 function App() {
   const [user, setUser] = useState(() => auth.currentUser);
-
+  const [initializing, setInitializing] = useState(true)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -20,6 +20,9 @@ function App() {
         setUser(user);
       } else {
         setUser(null)
+      }
+      if (initializing) {
+        setInitializing(false);
       }
     });
 
@@ -39,11 +42,15 @@ function App() {
     }
   };
 
+
+  if (initializing) return 'Loading ...';
+
+
   return (
     <div className='content'>
       {user ? (
         <>
-          <BtnSignOut />
+          <BtnSignOut>Sign out</BtnSignOut>
           <Channel user={user} db={db} />
         </>
       ) : (
