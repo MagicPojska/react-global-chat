@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Message from './Message'
+import { Input, Button } from '@material-ui/core'
 
 function Channel({ user = null, db = null }) {
     const [messages, setMessages] = useState([]);
@@ -21,7 +22,7 @@ function Channel({ user = null, db = null }) {
         }
     }, [db])
 
-    const handleOnChange = e => {
+    const handleOnChange = async e => {
         setNewMessage(e.target.value);
     }
 
@@ -37,22 +38,31 @@ function Channel({ user = null, db = null }) {
                 photoURL
             })
         }
+
+        setNewMessage('');
     }
 
     return (
-        <>
-            <ul>
-                {messages.map(message => (
-                    <li key={message.id}>
-                        <Message {...message} />
-                    </li>
-                ))}
-            </ul>
+        <div>
+            <div className='chatbox'>
+                <ul>
+                    <div className='msgs'>
+                        {messages.map(message => (
+                            <li key={message.id}>
+                                <Message {...message} />
+                            </li>
+                        ))}
+                    </div>
+                </ul>
+            </div>
+
             <form onSubmit={handleOnSubmit}>
-                <input type='text' value={newMessage} onChange={handleOnChange} placeholder='Type your message here' />
-                <button type='submit' disabled={!newMessage}>Send</button>
+                <div className='sendMsg'>
+                    <Input style={{ width: '93%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} type='text' value={newMessage} onChange={handleOnChange} placeholder='Type your message here' />
+                    <Button type='submit' disabled={!newMessage}>Send</Button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 
