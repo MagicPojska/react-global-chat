@@ -45,8 +45,9 @@ function Channel({ user = null, db = null }) {
             })
         }
 
-        setNewMessage('');
         bottomListRef.current.scrollIntoView({ behavior: 'smooth' });
+        setNewMessage('');
+
     }
 
     return (
