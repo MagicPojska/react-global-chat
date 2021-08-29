@@ -3,7 +3,7 @@ import { auth } from '../firebase'
 
 function Message({ createdAt = null, text = '', displayName = '', photoURL = '', uid = '' }) {
     return (
-        <div className={`msg ${uid == auth.currentUser.uid ? 'sent' : 'received'}`}>
+        <div className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`}>
 
             {photoURL ? (<img src={photoURL} alt='' width={45} height={45}></img>) : null}
 

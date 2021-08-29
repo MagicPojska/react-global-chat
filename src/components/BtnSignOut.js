@@ -2,13 +2,7 @@ import { auth } from '../firebase.js'
 import { Button } from '@material-ui/core'
 
 function BtnSignOut() {
-    const signOut = async () => {
-        try {
-            await auth.signOut();
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
+
 
 
     return (
