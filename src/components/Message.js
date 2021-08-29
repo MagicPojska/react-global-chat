@@ -6,9 +6,15 @@ function Message({ createdAt = null, text = '', displayName = '', photoURL = '',
         <div className={`msg ${uid == auth.currentUser.uid ? 'sent' : 'received'}`}>
 
             {photoURL ? (<img src={photoURL} alt='' width={45} height={45}></img>) : null}
-            {displayName ? <p>{displayName}</p> : null}
-            {createdAt?.seconds ? (<span>{formatRelative(new Date(createdAt.seconds * 1000), new Date())}</span>) : null}
-            <p>{text}</p>
+
+            <div className='message-text'>
+                <p className='msg-text'>{text}</p>
+                <div className='message-info'>
+                    {createdAt?.seconds ? (<span>{formatRelative(new Date(createdAt.seconds * 1000), new Date())}</span>) : null}
+                    {displayName ? <p className='u-name'>{displayName}</p> : null}
+                </div>
+            </div>
+
         </div>
     )
 }
