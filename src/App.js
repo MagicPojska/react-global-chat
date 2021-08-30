@@ -1,54 +1,39 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
+import "./App.css";
+import React, { useState, useEffect } from "react";
 
 //Components
-import Btn from './components/Btn';
-import BtnSignOut from './components/BtnSignOut';
-import Channel from './components/Channel'
+import Btn from "./components/Btn";
+import BtnSignOut from "./components/BtnSignOut";
+import Channel from "./components/Channel";
 
 //Firebase
-import { auth, db } from './firebase'
-import firebase from 'firebase/compat/app';
+import { auth, db } from "./firebase";
 
 function App() {
   const [user, setUser] = useState(() => auth.currentUser);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
       } else {
-        setUser(null)
+        setUser(null);
       }
     });
 
     return unsubscribe;
   }, []);
 
-  const signInWithGoogle = async () => {
-    // Retrieve Google provider object
-    const provider = new firebase.auth.GoogleAuthProvider();
-    // Set language to the default browser preference
-    auth.useDeviceLanguage();
-    // Start sign in process
-    try {
-      await auth.signInWithPopup(provider);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-
   return (
-    <div className='content'>
+    <div className="content">
       {user ? (
         <>
           <BtnSignOut>Sign out</BtnSignOut>
           <Channel user={user} db={db} />
         </>
       ) : (
-        <Btn onClick={signInWithGoogle}>Sign in with Google</Btn>)}
-
+        <Btn>Sign in with Google</Btn>
+      )}
     </div>
   );
 }

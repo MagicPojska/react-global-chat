@@ -1,33 +1,33 @@
 * {
-    box-sizing: border-box;
-    margin: 0;;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.header{
+.header {
   display: flex;
   justify-content: flex-end;
   position: fixed;
   width: 100%;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   top: 0;
-  border-bottom: 'solid 1px lightgray';
+  border-bottom: "solid 1px lightgray";
   z-index: 10;
 }
 
-.chatbox{
-    width: 100%;
-    height: 93vh;
-    display: flex;
-    justify-content: center;
+.chatbox {
+  width: 100%;
+  height: 93vh;
+  display: flex;
+  justify-content: center;
 }
 
-ul{
-    padding: 0;
-    width: 60%;
+ul {
+  padding: 0;
+  width: 60%;
 }
 
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
 
 img {
@@ -46,37 +46,35 @@ img {
   align-items: center;
 }
 
-.u-name{
-    font-size: 15px;
-    margin: 0;
-    margin-left: 5px;
+.u-name {
+  font-size: 15px;
+  margin: 0;
+  margin-left: 5px;
 }
-.sent .message-info span{
-    font-size: 10px;
-    padding: 0 15px;
-    padding-left: 30px;
+.sent .message-info span {
+  font-size: 10px;
+  padding: 0 15px;
+  padding-left: 30px;
 }
-.received .message-info span{
-    font-size: 10px;
-    padding: 0 15px;
-    padding-right: 28px;
+.received .message-info span {
+  font-size: 10px;
+  padding: 0 15px;
+  padding-right: 28px;
 }
-.received .u-name{
-    margin-left: 0;
-}
-
-
-.message-info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+.received .u-name {
+  margin-left: 0;
 }
 
-.msg-text{
-    font-weight: 500;
-    font-size: 25px;
-    padding: 5px
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.msg-text {
+  font-weight: 500;
+  font-size: 25px;
+  padding: 5px;
 }
 
 .sent {
@@ -91,14 +89,14 @@ img {
 
 .received {
   border: 1px solid lightgray;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   border-top-left-radius: 1000px;
   float: left;
   padding: 20px 27px 0 20px;
 }
 
-.received .message-info{
-    flex-direction: row-reverse;
+.received .message-info {
+  flex-direction: row-reverse;
 }
 
 .sendMsg {
@@ -120,22 +118,23 @@ img {
   flex-direction: column;
 }
 
-@media (max-width: 1024px){
-    ul{
-        width: 90%;
-    }
+@media (max-width: 1024px) {
+  ul {
+    width: 90%;
+  }
 }
 
 @media (max-width: 775px) {
   .msg-text {
     font-size: 22px;
   }
-  .message-info span, .message-info .u-name{
+  .message-info span,
+  .message-info .u-name {
     font-size: 12px;
   }
-  ul{
+  ul {
     width: 100%;
-}
+  }
   .sent {
     padding: 10px 10px 0 18px;
   }
@@ -153,7 +152,8 @@ img {
   .msg-text {
     font-size: 17px;
   }
-  .message-info span, .message-info .u-name{
+  .message-info span,
+  .message-info .u-name {
     font-size: 10px;
   }
   .sent {
